@@ -1,21 +1,23 @@
-const api_root = 'https://api.openweathermap.org/data/2.5/weather';
-const api_key = '81968ba6230fa88196a89ff1cb735c7a';
+const apiRoot = 'https://api.openweathermap.org/data/2.5/weather';
+const apiKey = '81968ba6230fa88196a89ff1cb735c7a';
 
-const search_form = document.querySelector(".search-form");
-const error_box = document.querySelector(".error-box");
+const searchForm = document.querySelector(".search-form");
+const errorBox = document.querySelector(".error-box");
 
 
 const fetchWeather = city => {
 
-    const API_URL = `${api_root}?q=${city}&units=metric&appid=${api_key}`;
+    const API_URL = `${apiRoot}?q=${city}&units=metric&appid=${apiKey}`;
 
     fetch(API_URL)
         .then(response => response.json())
         .then(data => {
             if (data.cod == "404") {
-                error_box.innerHTML = data.message;
+                errorBox.innerHTML = data.message;
+                document.querySelector(".weather").style.visibility = "hidden";
             } else {
-                error_box.innerHTML = "";
+                errorBox.innerHTML = "";
+                document.querySelector(".weather").style.visibility = "";
                 displayWeather(data);
             };
         })
@@ -57,7 +59,7 @@ document.querySelector(".search-bar").addEventListener("keyup", function() {
         submitBtn.setAttribute("disabled", true);
     } else {
         submitBtn.removeAttribute("disabled");
-        search_form.addEventListener("submit", search);
+        searchForm.addEventListener("submit", search);
     };
 });
 
