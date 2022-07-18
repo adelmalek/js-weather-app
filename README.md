@@ -1,1 +1,1 @@
-Link: https://geradele.github.io/js-weather-app/
+Link: https://adelmalek.github.io/js-weather-app/
